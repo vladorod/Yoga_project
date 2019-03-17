@@ -55,57 +55,5 @@ function addZero(num) {
 
 setClock("timer", deadline)
 
-// Srcroll animation 
-
-function animate(options) {
-
-  let start = performance.now();
-
-  requestAnimationFrame(function animate(time) {
-    // timeFraction от 0 до 1
-    let timeFraction = (time - start) / options.duration;
-    if (timeFraction > 1) timeFraction = 1;
-
-    // текущее состояние анимации
-    let progress = options.timing(timeFraction)
-    
-    options.draw(progress);
-
-    if (timeFraction < 1) {
-      requestAnimationFrame(animate);
-    }
-
-  });
-}
-
-
-let a = document.querySelectorAll('a[href="#"]');
-  
-
- 
-  // a.addEventListener('click', (e) => { 
-
-  //   e.preventDefault();
-
-  //   animate({
-  //     duration: 1000,
-  //     timing: function(timeFraction) {
-  //       return Math.pow(timeFraction, 5);
-  //     },
-  //     draw: function(progress) {
-  //      scrollTo(document.querySelector(href).getBoundingClientRect().top)
-  //     }
-  // });
-    
-  // });
-  
- 
 });
-
-
-let arr = document.querySelectorAll('ul a[href]');
-
-for (var i = 0; i < arr.length; i++) {
-
-  console.log('asd')
-  }
+ 
