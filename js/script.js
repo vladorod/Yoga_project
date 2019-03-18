@@ -1,5 +1,7 @@
-window.addEventListener('DOMContentLoaded', () => { 
-  'use scrict';
+window.addEventListener('DOMContentLoaded', () => {
+
+  "use strict";
+
   let tab = document.querySelectorAll('.info-header-tab'),
       info = document.querySelector('.info-header'),
       tabContent = document.querySelectorAll('.info-tabcontent');
@@ -47,11 +49,11 @@ more.addEventListener('click', () => {
 
 let descriptionBtn = document.querySelectorAll('.description-btn');
 
-for( i in descriptionBtn ) { 
-  descriptionBtn[i].addEventListener('click', () => {
-    showModal(true)
+descriptionBtn.forEach( function (item,i,arr) { 
+  arr[i].addEventListener('click', () => {
+    showModal(true);
   });
-}
+});
 
 
 function showModal(openOrClose) { 

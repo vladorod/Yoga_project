@@ -1,6 +1,6 @@
 window.addEventListener('DOMContentLoaded', () => { 
       
-  "use scrict";
+  "use strict";
 
 // Timer 
 
