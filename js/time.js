@@ -8,17 +8,16 @@ window.addEventListener('DOMContentLoaded', () => {
 
 function getTimeRemaining(endtime) { 
 
-    let t = Date.parse(endtime) - Date.parse(new Date()),
-        s = Math.floor((t/1000) % 60), 
-        m = Math.floor((t/1000/60) % 60),
-        h = Math.floor((t/(1000*60*60)));
-
-    return { 
-      "total" : t,
-      "hours" : h,
-      "minutes" : m,
-      "seconds" : s,
-    };
+  let t = Date.parse(endtime) - Date.parse(new Date()),
+      s = Math.floor((t/1000) % 60), 
+      m = Math.floor((t/1000/60) % 60),
+      h = Math.floor((t/(1000*60*60)));
+  return { 
+    "total" : t,
+    "hours" : h,
+    "minutes" : m,
+    "seconds" : s,
+  };
         
     
 };

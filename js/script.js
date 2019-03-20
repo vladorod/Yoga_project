@@ -1,4 +1,4 @@
-window.addEventListener('DOMContentLoaded', () => {
+ window.addEventListener('DOMContentLoaded', () => {
 
   "use strict";
 
@@ -57,7 +57,6 @@ descriptionBtn.forEach( function (item,i,arr) {
 
 
 function showModal(openOrClose) { 
-
   if ( openOrClose ) { 
     document.body.style.overflow = 'hidden';
     overlay.style.display = 'block';
@@ -72,6 +71,137 @@ function showModal(openOrClose) {
   });
 
 } 
+
+// Check phone (MASK)
+
+let inputPhoneAll = document.querySelectorAll("input[type='tel']");
+inputPhoneAll[0].value = "";
+inputPhoneAll[1].value = "";
+
+function setCursorPosition(pos, elem) {
+  elem.focus();
+  if (elem.setSelectionRange) elem.setSelectionRange(pos, pos);
+    else if (elem.createTextRange) {
+    var range = elem.createTextRange();
+    range.collapse(true);
+    range.moveEnd("character", pos);
+    range.moveStart("character", pos);
+    range.select()
+    } 
+}
+
+
+inputPhoneAll[0].addEventListener("input", (e) => {
+  
+  inputPhoneAll[0].defaultValue = "+7(   )   -  -  ";  
+    let matrix = inputPhoneAll[0].defaultValue,
+    i = 0,
+    def = matrix.replace(/\D/g, ""),
+    val = inputPhoneAll[0].value.replace(/\D/g, "");
+    def.length >= val.length && (val = def);
+  matrix = matrix.replace(/[ \d]/g, function(a) {
+    return val.charAt(i++) || " ";
+  });
+  if ( val.length < 12 ) {
+    inputPhoneAll[0].value = matrix;
+    i = matrix.lastIndexOf(val.substr(-1));
+    i < matrix.length && matrix != inputPhoneAll[0].defaultValue ? i++ : i = matrix.indexOf(" ");
+    setCursorPosition(i, inputPhoneAll[0]);
+  } else { 
+    inputPhoneAll[0].value = matrix.limit(16);
+  }
+}, false);
+
+inputPhoneAll[1].addEventListener("input", (e) => {
+  
+  inputPhoneAll[1].defaultValue = "+7(   )   -  -  ";  
+    let matrix = inputPhoneAll[1].defaultValue,
+    i = 0,
+    def = matrix.replace(/\D/g, ""),
+    val = inputPhoneAll[1].value.replace(/\D/g, "");
+    def.length >= val.length && (val = def);
+  matrix = matrix.replace(/[ \d]/g, function(a) {
+    return val.charAt(i++) || " ";
+  });
+  if ( val.length < 12 ) {
+    inputPhoneAll[1].value = matrix;
+    i = matrix.lastIndexOf(val.substr(-1));
+    i < matrix.length && matrix != inputPhoneAll[1].defaultValue ? i++ : i = matrix.indexOf(" ");
+    setCursorPosition(i, inputPhoneAll[1]);
+  } else { 
+    inputPhoneAll[1].value = matrix.limit(16);
+  }
+}, false);
+
+
+//From
+
+let form1 = document.querySelector('.main-form'),
+    form2 = document.querySelector('#form');
+
+
+sendForm(form1, 'server.php');
+sendForm(form2, 'server.php');
+
+
+function sendForm(form, url = 'http://127.0.0.1:3000/call'){ 
+  let massage = { 
+    loading: 'Загрузка...',
+    success: 'Спасибо! Скоро мы с вами свяжимся!',
+    failure: 'Что-то пошло не так...'
+  };
+
+  let input = form.querySelectorAll('input'),
+  statusMassage = document.createElement('div');
+  statusMassage.classList.add('status');
+
+
+  form.addEventListener('submit', (e)=> { 
+
+    e.preventDefault();
+    form.appendChild(statusMassage);
+  
+    let req = new XMLHttpRequest();
+    req.open('POST', url ); 
+    req.getResponseHeader('Content-Type', 'application/js; charset=utf-8');
+  
+    console.log(form.name);
+
+    let fromData = new FormData(form);
+    
+    let obj = {};
+  
+    fromData.forEach((value,key) => {
+      obj[key] = value;
+    });
+    
+    console.log(obj)
+    let json = JSON.stringify(obj);
+  
+    console.log(json)
+  
+    req.send(json);
+    
+    req.addEventListener('readystatechange', () => { 
+      if ( req.readyState < 4 ) { 
+        statusMassage.innerHTML = massage.loading;
+      } else if ( req.readyState == 4 && req.status == 200) { 
+        statusMassage.innerHTML = massage.success;
+      } else { 
+        statusMassage.innerHTML = massage.failure;
+        for ( let i = 0; i < input.length; i++) { 
+          input[i].value = '';
+        }
+      }
+    });
+    
+    for ( let i = 0; i < input.length; i++) { 
+      input[i].value = '';
+    }
+  
+  });
+
+};
 
 
 });
