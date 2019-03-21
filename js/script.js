@@ -161,10 +161,6 @@ function sendForm(form, url = 'http://127.0.0.1:3000/call'){
     e.preventDefault();
     form.appendChild(statusMassage);
   
-    let req = new XMLHttpRequest();
-    req.open('POST', url ); 
-    req.getResponseHeader('Content-Type', 'application/js; charset=utf-8');
-  
     console.log(form.name);
 
     let fromData = new FormData(form);
@@ -174,34 +170,46 @@ function sendForm(form, url = 'http://127.0.0.1:3000/call'){
     fromData.forEach((value,key) => {
       obj[key] = value;
     });
-    
     console.log(obj)
     let json = JSON.stringify(obj);
-  
     console.log(json)
-  
-    req.send(json);
-    
-    req.addEventListener('readystatechange', () => { 
-      if ( req.readyState < 4 ) { 
-        statusMassage.innerHTML = massage.loading;
-      } else if ( req.readyState == 4 && req.status == 200) { 
-        statusMassage.innerHTML = massage.success;
-      } else { 
-        statusMassage.innerHTML = massage.failure;
-        for ( let i = 0; i < input.length; i++) { 
-          input[i].value = '';
-        }
-      }
-    });
-    
-    for ( let i = 0; i < input.length; i++) { 
-      input[i].value = '';
-    }
-  
-  });
 
+    postFrom(json,url)
+    .then(() => statusMassage.innerHTML = massage.loading)
+    .then(() => { statusMassage.innerHTML = massage.success;})
+    .catch(() => { 
+      statusMassage.innerHTML = massage.failure;
+    })
+    .then(clearInputAll)
+  });
 };
 
+function postFrom (data,url) { 
+  return new Promise ((resolve,reject) => { 
+    let req = new XMLHttpRequest();
+    req.open("POST", url);
+    req.setRequestHeader('Content-Type','application/json; charset=utf-8');
+    req.onreadystatechange = () => { 
+    if (req.readyState < 4) { 
+      resolve();
+    } else if (req.readyState === 4) { 
+        if (req.status == 200 && req.status < 5) { 
+          resolve();
+      } else { 
+          reject();
+      }
+    } 
+  };
+  req.send(data)
+});
+}
+//end 
+
+function clearInputAll() { 
+  let input = document.querySelectorAll('input')
+  for(let i = 0; i < input.length; i++) { 
+    input[i].value = "";
+  }
+}
 
 });
