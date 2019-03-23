@@ -140,8 +140,8 @@ let form1 = document.querySelector('.main-form'),
     form2 = document.querySelector('#form');
 
 
-sendForm(form1, 'server.php');
-sendForm(form2, 'server.php');
+sendForm(form1);
+sendForm(form2);
 
 
 function sendForm(form, url = 'http://127.0.0.1:3000/call'){ 
@@ -189,22 +189,23 @@ function postFrom (data,url) {
     let req = new XMLHttpRequest();
     req.open("POST", url);
     req.setRequestHeader('Content-Type','application/json; charset=utf-8');
-    req.onreadystatechange = () => { 
+    console.log(req.readyState + ' ' + req.status) 
+    req.onreadystatechange = () => {
+      console.log(req.readyState + ' ' + req.status) 
     if (req.readyState < 4) { 
       resolve();
     } else if (req.readyState === 4) { 
         if (req.status == 200 && req.status < 5) { 
           resolve();
-      } else { 
-          reject();
-      }
-    } 
-  };
+      } else reject();
+    } else reject();
+    };
   req.send(data)
+  
 });
 }
 //end 
-
+ 
 function clearInputAll() { 
   let input = document.querySelectorAll('input')
   for(let i = 0; i < input.length; i++) { 
@@ -212,4 +213,53 @@ function clearInputAll() {
   }
 }
 
+//slider
+
+let sliderindex = 1, 
+    slides = document.querySelectorAll('.slider-item'),
+    prev = document.querySelector('.prev'),
+    next = document.querySelector('.next'),
+    dotsWrap =document.querySelector('.slider-dots'),
+    dots = document.querySelectorAll('.dot');
+
+showSlides(sliderindex);
+
+function showSlides(n) { 
+  
+  if ( n > slides.length) { 
+    sliderindex = 1;
+  } else if (n < 1) {
+    sliderindex = slides.length;
+  }
+
+  slides.forEach( function (item) { item.style.display = 'none'; });
+  dots.forEach(function (item) {item.classList.remove('dot-active'); });
+  slides[sliderindex - 1 ].style.display = 'block';
+  dots[sliderindex - 1].classList.add('dot-active');
+}
+
+function plusSlides(n) { 
+  showSlides(sliderindex += n);
+}
+
+function currentSlides(n) { 
+  showSlides(sliderindex = n);
+}
+
+prev.addEventListener('click', function() { 
+plusSlides(-1);
 });
+
+next.addEventListener('click', function() { 
+plusSlides(1);
+});
+
+dotsWrap.addEventListener('click', function(e) { 
+for (let i = 0; i < dots.length+1; i++) { 
+  if ( e.target.classList.contains('dot') && e.target == dots[i-1]) { 
+    currentSlides(i);
+  }
+}
+});
+
+  });
