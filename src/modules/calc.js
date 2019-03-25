@@ -14,7 +14,7 @@ function calc () {
     if ( this.value != ""){
     this.value = this.value.replace(/\D/g, "");
     presonsSum= this.value; 
-    total = (daysSum + presonsSum)*4000;
+    total = (+daysSum + +presonsSum)*4000;
     if (restDays.value != '') {
       totalValue.innerHTML = total;
     } else totalValue.innerHTML = 0;
@@ -25,7 +25,7 @@ function calc () {
     if ( this.value != ""){
     this.value = this.value.replace(/\D/g, "");
     daysSum=this.value;
-    total  = (daysSum + presonsSum)*4000;
+    total  = (+daysSum + +presonsSum)*4000;
     if (presons.value != '') {
       totalValue.innerHTML = total;
     } else totalValue.innerHTML = 0;
