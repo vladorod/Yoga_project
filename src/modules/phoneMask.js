@@ -36,7 +36,7 @@ inputPhoneAll[0].addEventListener("input", (e) => {
     inputPhoneAll[0].value = matrix.limit(16);
   }
 }, false);
-
+  
 inputPhoneAll[1].addEventListener("input", (e) => {
   
   inputPhoneAll[1].defaultValue = "+7(   )   -  -  ";  
@@ -58,17 +58,15 @@ inputPhoneAll[1].addEventListener("input", (e) => {
   }
 }, false);
 
-function limit() {
-    String.prototype.limit = function (num) {
-      let arr = this.toString(),
-        arrNew = [];
-      for (let i = 0; i < num; i++) {
-        arrNew.push(arr[i]);
-      }
-      return arrNew.join('');
-    }
+String.prototype.limit = function (num) {
+  let arr = this.toString(),
+    arrNew = [];
+  for (let i = 0; i < num; i++) {
+    arrNew.push(arr[i]);
   }
-  
+  return arrNew.join('');
 }
 
-module.export = phoneMask();
+}
+
+module.exports = phoneMask;

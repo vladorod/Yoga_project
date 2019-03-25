@@ -27,7 +27,6 @@ function form() {
             e.preventDefault();
             form.appendChild(statusMassage);
 
-            console.log(form.name);
 
             let fromData = new FormData(form);
 
@@ -64,9 +63,7 @@ function form() {
             let req = new XMLHttpRequest();
             req.open("POST", url);
             req.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
-            console.log(req.readyState + ' ' + req.status);
             req.onreadystatechange = () => {
-                console.log(req.readyState + ' ' + req.status);
                 if (req.readyState < 4) {
                     resolve();
                 } else if (req.readyState === 4) {
@@ -107,4 +104,4 @@ function form() {
 }
 
 
-module.export = form();
+module.exports = form;
