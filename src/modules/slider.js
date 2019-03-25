@@ -49,4 +49,4 @@ for (let i = 0; i < dots.length+1; i++) {
 
 }
 
-module.export = slider;
+module.export = slider();

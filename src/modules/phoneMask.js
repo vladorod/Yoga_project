@@ -11,7 +11,7 @@ function setCursorPosition(pos, elem) {
     range.collapse(true);
     range.moveEnd("character", pos);
     range.moveStart("character", pos);
-    range.select()
+    range.select();
     } 
 }
 
@@ -71,4 +71,4 @@ function limit() {
   
 }
 
-module.export = phoneMask;
+module.export = phoneMask();

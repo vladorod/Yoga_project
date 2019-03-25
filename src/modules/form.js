@@ -55,7 +55,7 @@ function form() {
                     statusMassage.style.cssText = "color: white;";
                     animateCSS(AnimationEl, 'shake');
                 })
-                .then(clearInputAll)
+                .then(clearInputAll);
         });
     };
 
@@ -64,9 +64,9 @@ function form() {
             let req = new XMLHttpRequest();
             req.open("POST", url);
             req.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
-            console.log(req.readyState + ' ' + req.status)
+            console.log(req.readyState + ' ' + req.status);
             req.onreadystatechange = () => {
-                console.log(req.readyState + ' ' + req.status)
+                console.log(req.readyState + ' ' + req.status);
                 if (req.readyState < 4) {
                     resolve();
                 } else if (req.readyState === 4) {
@@ -75,7 +75,7 @@ function form() {
                     } else reject();
                 } else reject();
             };
-            req.send(data)
+            req.send(data);
 
         });
     }
@@ -83,7 +83,7 @@ function form() {
     //end 
 
     function clearInputAll() {
-        let input = document.querySelectorAll('input')
+        let input = document.querySelectorAll('input');
         for (let i = 0; i < input.length; i++) {
             input[i].value = "";
         }
@@ -91,20 +91,20 @@ function form() {
 
     function animateCSS(element, animationName, callback) {
         let node = element;
-        node.classList.add('animated', animationName)
+        node.classList.add('animated', animationName);
 
         function handleAnimationEnd() {
-            node.classList.remove('animated', animationName)
-            node.removeEventListener('animationend', handleAnimationEnd)
+            node.classList.remove('animated', animationName);
+            node.removeEventListener('animationend', handleAnimationEnd);
 
-            if (typeof callback === 'function') callback()
+            if (typeof callback === 'function') callback();
         }
 
-        node.addEventListener('animationend', handleAnimationEnd)
+        node.addEventListener('animationend', handleAnimationEnd);
     }
 
 
 }
 
 
-module.export = form;
+module.export = form();

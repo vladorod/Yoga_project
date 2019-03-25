@@ -23,7 +23,7 @@ function timer () {
           hours = timer.querySelector('.hours'),
           minutes = timer.querySelector('.minutes'),
           second = timer.querySelector('.seconds'),
-          timeInterval = setInterval(updateClock, 1000)
+          timeInterval = setInterval(updateClock, 1000);
       
       function updateClock() {
         let t = getTimeRemaining(endtime);
@@ -47,7 +47,7 @@ function timer () {
       } else return num; 
     }
     
-    setClock("timer", deadline)
+    setClock("timer", deadline);
 }
 
-module.export = timer;
+module.export = timer();

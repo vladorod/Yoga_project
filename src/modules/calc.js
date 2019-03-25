@@ -24,7 +24,7 @@ function calc () {
   restDays.addEventListener('input', function (e) {
     if ( this.value != ""){
     this.value = this.value.replace(/\D/g, "");
-    daysSum=this.value 
+    daysSum=this.value;
     total  = (daysSum + presonsSum)*4000;
     if (presons.value != '') {
       totalValue.innerHTML = total;
@@ -41,4 +41,4 @@ function calc () {
   
 }
 
-module.export = calc;
+module.export = calc();
