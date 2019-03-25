@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/vladorod/TabJS#readme",
   "dependencies": {
+    "@babel/polyfill": "^7.4.0",
     "webpack-cli": "^3.3.0"
   },
   "devDependencies": {
