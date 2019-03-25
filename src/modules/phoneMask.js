@@ -71,4 +71,4 @@ function limit() {
   
 }
 
-module.export = phoneMask();
+module.export = phoneMask;

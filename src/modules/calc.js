@@ -41,4 +41,4 @@ function calc () {
   
 }
 
-module.export = calc();
+module.export = calc;

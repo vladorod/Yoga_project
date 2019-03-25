@@ -38,4 +38,4 @@ function showModal(openOrClose) {
 
 }
 
-module.export = modal();
+module.export = modal;

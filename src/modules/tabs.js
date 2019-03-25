@@ -34,4 +34,4 @@ function tabs () {
   });
 };
 
-module.export = tabs(); 
+module.export = tabs; 

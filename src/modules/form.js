@@ -107,4 +107,4 @@ function form() {
 }
 
 
-module.export = form();
+module.export = form;
