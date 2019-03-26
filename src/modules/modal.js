@@ -22,20 +22,21 @@ descriptionBtn.forEach( function (item,i,arr) {
 
 function showModal(openOrClose) { 
   if ( openOrClose ) { 
+    // opne
     document.body.style.overflow = 'hidden';
     overlay.style.display = 'block';
     more.classList.add('more-splash');
   } else { 
+    //close
      overlay.style.display = 'none';
      more.classList.remove('more-splash');
      document.body.style.overflow = '';
+     document.querySelector('.status').innerHTML = '';
   }
   close.addEventListener('click', () => { 
     showModal(false);
   });
-
 } 
-
 }
 
 module.exports = modal;

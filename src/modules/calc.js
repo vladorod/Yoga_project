@@ -33,7 +33,6 @@ function calc() {
   });
 
   place.addEventListener('change', function () {
-    console.log(restDays.value)
     if (presons.value !== "" && restDays.value !== "" && presons.value != "0" && restDays.value != "0") {
       let a = total;
       totalValue.innerHTML = a * this.options[this.selectedIndex].value;
