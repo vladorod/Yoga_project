@@ -16,7 +16,7 @@ function calc() {
       presonsSum = this.value;
       total = (+daysSum + +presonsSum) * 4000;
       if (restDays.value != '' && +restDays.value > 0) {
-        totalValue.innerHTML = total;
+        totalValue.innerHTML = total * place.options[place.selectedIndex].value;
       } else totalValue.innerHTML = 0;
     } else totalValue.innerHTML = 0;
   });
@@ -27,12 +27,12 @@ function calc() {
       daysSum = this.value;
       total = (+daysSum + +presonsSum) * 4000;
       if (presons.value != '' && +presons.value > 0) {
-        totalValue.innerHTML = total;
+        totalValue.innerHTML = total * place.options[place.selectedIndex].value;
       } else totalValue.innerHTML = 0;
     } else totalValue.innerHTML = 0;
   });
 
-  place.addEventListener('change', function () {
+    place.addEventListener('change', function () {
     if (presons.value != "" && restDays.value != "" && +presons.value > 0 && +restDays.value > 0) {
       let a = total;
       totalValue.innerHTML = a * this.options[this.selectedIndex].value;
