@@ -1,3 +1,6 @@
+require('babel-polyfill');
+require('formdata-polyfill');
+
 window.addEventListener('DOMContentLoaded', function () { 
 
 "use strict";
@@ -17,6 +20,7 @@ form();
 slider();
 calc();
 timer();
+
 
 });
  
