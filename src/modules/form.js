@@ -54,7 +54,7 @@ function form() {
                     statusMassage.style.cssText = "color: white;";
                     animateCSS(AnimationEl, 'shake');
                 })
-                .then(clearInputAll);
+                .then(clearInputAll());
         });
     };
 

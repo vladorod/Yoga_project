@@ -38,7 +38,6 @@ function calc() {
       totalValue.innerHTML = a * this.options[this.selectedIndex].value;
     } else totalValue.innerHTML = 0;
   });
-
 }
 
 module.exports = calc;
