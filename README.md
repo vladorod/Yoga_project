@@ -1,5 +1,5 @@
 # Yoga_project
 
-:zap: demo https://vladorod.github.io/Yoga_project/. :zap:
+demo https://vladorod.github.io/Yoga_project/. 
 
 with native JavaScript 
